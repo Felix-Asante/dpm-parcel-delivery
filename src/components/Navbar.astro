@@ -1,0 +1,13 @@
+---
+import { cn } from "../utils/style";
+
+
+const { className } = Astro.props;
+---
+
+<nav class={cn('bg-secondary h-16',className)}>
+    <div class="lg:max-w-6xl mx-auto p-3 flex items-center justify-between h-full">
+        <a href="/" class="text-white font-bold text-xl md:text-2xl">DPM <span class="text-primary">Deliveries</span> </a>
+        <div></div>
+    </div>
+</nav>
