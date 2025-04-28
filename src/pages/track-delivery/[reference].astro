@@ -26,9 +26,9 @@ const order = data!;
 ---
 
 <Layout>
-    <div class="lg:max-w-6xl 2xl:max-w-7xl mx-auto px-5 lg:px-3 mt-8 pb-10">
-        <header class="flex items-center justify-between mb-8">
-            <Image src={logo} alt="DPM Deliveries" class="w-44 h-20 object-contain" />
+    <div class="lg:max-w-6xl 2xl:max-w-7xl mx-auto px-5 lg:px-3 pb-10">
+        <header class="flex items-center justify-between">
+            <Image src={logo} alt="DPM Deliveries" class="w-44 h-44 object-contain" />
             <div>   
                 <h1 class="text-gray-500">Tracking No.</h1>
                 <p class="font-bold text-lg text-secondary">#{reference}</p>
@@ -52,16 +52,16 @@ const order = data!;
             </div>
             <div class="border rounded-lg p-5">
                 <h2 class="text-lg font-bold mb-3">Delivery Agent Information</h2>
-                <div class="space-y-3">
-                    <OrderListItem label="Name" value={order.rider.fullName} />
-                    <OrderListItem label="Phone" value={order.rider.phone} />
-                    <div class="flex items-center gap-2">
-                        <a href={`tel:${order.rider.phone}`} class="mt-4 flex items-center gap-2 font-bold w-full justify-center text-white bg-primary py-2 px-4 rounded-md">
-                            <PhoneCallIcon class="w-5 h-5" />
-                            Contact Agent
-                        </a>
-                    </div>
+               {order?.rider ? <div class="space-y-3">
+                <OrderListItem label="Name" value={order.rider?.fullName} />
+                <OrderListItem label="Phone" value={order.rider?.phone} />
+                <div class="flex items-center gap-2">
+                    <a href={`tel:${order.rider?.phone}`} class="mt-4 flex items-center gap-2 font-bold w-full justify-center text-white bg-primary py-2 px-4 rounded-md">
+                        <PhoneCallIcon class="w-5 h-5" />
+                        Contact Agent
+                    </a>
                 </div>
+            </div>: <p class="text-gray-500">No delivery agent assigned yet.</p> }
             </div>
         </div>
         <section class="mt-6">
