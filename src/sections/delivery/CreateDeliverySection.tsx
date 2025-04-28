@@ -7,7 +7,7 @@ export function CreateDeliverySection() {
   const $showDeliveryForm = useStore(showDeliveryForm);
   return (
     <div className="mt-10 lg:max-w-6xl 2xl:max-w-7xl mx-auto px-8 lg:px-3">
-      {!$showDeliveryForm ? (
+      {$showDeliveryForm ? (
         <div>
           <div className="md:w-[60%]">
             <h2 className="text-xl lg:text-2xl font-bold">
