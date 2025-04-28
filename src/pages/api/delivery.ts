@@ -25,6 +25,7 @@ export const POST: APIRoute = async ({ request }) => {
     const result = await response.json();
 
     if (!response.ok) {
+      console.log({ result });
       return new Response(
         JSON.stringify({ error: getErrorMessage(result?.message?.error) }),
         {
@@ -33,10 +34,11 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    return new Response(JSON.stringify({ message: "success" }), {
+    return new Response(JSON.stringify({ result }), {
       status: 200,
     });
   } catch (error) {
+    console.log({ error });
     return new Response(JSON.stringify({ error: getErrorMessage(error) }), {
       status: 400,
     });
