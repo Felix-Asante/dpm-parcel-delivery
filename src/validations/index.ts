@@ -1,9 +1,20 @@
 import { z } from "zod";
+import { AllowedCities } from "../constants/enum";
 
 export const deliverySchema = z.object({
-  pickupAddress: z.string().min(1, "Pickup address is required"),
+  pickupArea: z.string().min(1, "Pickup area is required"),
+  pickupCity: z.enum([
+    AllowedCities.Nkawkaw,
+    AllowedCities.Koforidua,
+    AllowedCities.Donkorkrom,
+  ]),
   senderPhone: z.string().min(10, "Pickup telephone is required"),
-  dropOffAddress: z.string().min(1, "Delivery address is required"),
+  dropOffArea: z.string().min(1, "Delivery area is required"),
+  dropOffCity: z.enum([
+    AllowedCities.Nkawkaw,
+    AllowedCities.Koforidua,
+    AllowedCities.Donkorkrom,
+  ]),
   recipientPhone: z.string().min(10, "Recipient telephone is required"),
   pickupDate: z.coerce.date().optional(),
   dropOffDate: z.coerce.date().optional(),

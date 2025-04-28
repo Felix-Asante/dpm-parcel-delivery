@@ -77,7 +77,7 @@ const order = data!;
                         <div class="mb-2">
                           <h3 class="font-medium text-primary">{getShipmentHistoryStatusDisplay(item.status)}</h3>
                           <time class="text-sm font-normal text-gray-500">
-                            {item.createdAt ? new Date(item.createdAt).toLocaleDateString() : "-"}
+                            {item.createdAt ? new Date(item.createdAt).toLocaleString() : "-"}
                           </time>
                         </div>
                         {item.description && (

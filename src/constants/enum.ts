@@ -24,3 +24,9 @@ export enum ShipmentHistoryStatus {
   PENDING = "pending",
   RIDER_ASSIGNED = "rider_assigned",
 }
+
+export enum AllowedCities {
+  Nkawkaw = "Nkawkaw",
+  Koforidua = "Koforidua",
+  Donkorkrom = "Donkorkrom",
+}

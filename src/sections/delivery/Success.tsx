@@ -22,12 +22,12 @@ export function Success() {
             support@yourdelivery.com
           </a>
         </p>
-        {/* <a
-          href="/track-delivery"
+        <a
+          href="/delivery"
           className="px-2 text-small hover:underline hover:text-primary"
         >
-          Track Your Shipment
-        </a> */}
+          Create Another Order
+        </a>
       </div>
     </div>
   );

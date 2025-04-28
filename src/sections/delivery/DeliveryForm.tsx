@@ -16,6 +16,7 @@ import { createDeliveryOrder } from "../../lib/create-delivery-order";
 import { showDeliveryForm } from "../../store/global";
 import { getErrorMessage } from "../../utils/error";
 import { useStore } from "@nanostores/react";
+import { AllowedCities } from "../../constants/enum";
 
 export function DeliveryForm() {
   const [pending, setPending] = useState(false);
@@ -53,18 +54,30 @@ export function DeliveryForm() {
     <Form method="post" onSubmit={onSubmit}>
       <div className="grid lg:grid-cols-2 gap-8 2xl:gap-16 w-full my-12 mb-20">
         <div className="flex flex-col gap-y-4 w-full">
+          <SelectInput
+            options={Object.values(AllowedCities).map((city) => ({
+              label: city,
+              value: city,
+            }))}
+            label="Pickup City"
+            placeholder="Select pickup city"
+            size="lg"
+            isRequired
+            name="pickupCity"
+          />
           <Input
             isRequired
-            errorMessage="Pickup address is required"
-            label="Pickup Address"
+            errorMessage="Pickup area is required"
+            label="Pickup Area"
             labelPlacement="outside"
-            name="pickupAddress"
-            placeholder="Enter pickup address"
+            name="pickupArea"
+            placeholder="Please enter your precise area eg: Nkawkaw - Around Life FM"
             type="text"
             variant="bordered"
             size="lg"
             radius="sm"
           />
+
           <Input
             isRequired
             errorMessage="Pickup telephone is required"
@@ -78,14 +91,25 @@ export function DeliveryForm() {
             type="tel"
             inputMode="tel"
           />
+          <SelectInput
+            options={Object.values(AllowedCities).map((city) => ({
+              label: city,
+              value: city,
+            }))}
+            label="Delivery City"
+            placeholder="Select delivery city"
+            size="lg"
+            isRequired
+            name="dropOffCity"
+          />
 
           <Input
             isRequired
-            errorMessage="Delivery address is required"
-            label="Delivery Address"
+            errorMessage="Delivery area is required"
+            label="Delivery Area"
             labelPlacement="outside"
-            name="dropOffAddress"
-            placeholder="Enter delivery address"
+            name="dropOffArea"
+            placeholder="Please enter your precise area eg: Nkawkaw - Around Life FM"
             type="text"
             variant="bordered"
             size="lg"

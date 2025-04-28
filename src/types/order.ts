@@ -3,10 +3,12 @@ export type Order = {
   createdAt: string;
   updatedAt: string;
   deletedAt: any;
-  pickupAddress: string;
+  pickupArea: string;
+  pickupCity: string;
   senderPhone: string;
   pickupDate: string;
-  dropOffAddress: string;
+  dropOffArea: string;
+  dropOffCity: string;
   recipientPhone: string;
   dropOffDate: string;
   extraInformation: any;

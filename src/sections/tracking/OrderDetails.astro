@@ -17,7 +17,8 @@ const { order } = Astro.props;
             <h5 class="text-lg font-bold">Pickup Information</h5>
         </div>
         <div class="space-y-3">
-            <OrderListItem label="Address" value={order.pickupAddress} />
+            <OrderListItem label="Pickup City" value={order.pickupCity} />
+            <OrderListItem label="Pickup Area" value={order.pickupArea} />
         <OrderListItem label="Phone" value={order.senderPhone} />
         <OrderListItem label="Date" value={order.pickupDate ? new Date(order.pickupDate).toDateString() : "-"} />
         </div>
@@ -28,7 +29,8 @@ const { order } = Astro.props;
             <h5 class="text-lg font-bold">Dropoff Information</h5>
         </div>
         <div class="space-y-3">
-            <OrderListItem label="Address" value={order.dropOffAddress} />
+            <OrderListItem label="Dropoff City" value={order.dropOffCity} />
+            <OrderListItem label="Dropoff Area" value={order.dropOffArea} />
             <OrderListItem label="Phone" value={order.recipientPhone} />
             <OrderListItem label="Date" value={order.dropOffDate ? new Date(order.dropOffDate).toDateString() : "-"} />
         </div>
