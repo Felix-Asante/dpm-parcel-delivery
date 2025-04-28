@@ -1,0 +1,105 @@
+---
+import { CheckIcon, PhoneCallIcon, TruckIcon } from '@lucide/astro';
+import { Image } from 'astro:assets';
+import logo from '../../assets/images/app-logo.jpeg';
+import Layout from "../../layouts/Layout.astro";
+import { getDeliveryOrderByReference } from "../../lib/delivery";
+import OrderDetails from "../../sections/tracking/OrderDetails.astro";
+import OrderListItem from '../../components/OrderListItem.astro';
+import { getShipmentHistoryStatusDisplay, getShipmentOptionDisplay } from '../../utils';
+export const prerender = false;
+
+const { reference } = Astro.params;
+
+if (!reference) {
+  return Astro.redirect("/404");
+}
+
+const { data, error } = await getDeliveryOrderByReference(reference as string);
+
+if (error) {
+  return Astro.redirect("/404");
+}
+
+const order = data!;
+
+---
+
+<Layout>
+    <div class="lg:max-w-6xl 2xl:max-w-7xl mx-auto px-5 lg:px-3 mt-8 pb-10">
+        <header class="flex items-center justify-between mb-8">
+            <Image src={logo} alt="DPM Deliveries" class="w-44 h-20 object-contain" />
+            <div>   
+                <h1 class="text-gray-500">Tracking No.</h1>
+                <p class="font-bold text-lg text-secondary">#{reference}</p>
+            </div>
+        </header>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="border rounded-lg p-5">
+                <h2 class="text-lg font-bold">Order Details</h2>
+                <p class="text-gray-500 mb-5">Created on {order.createdAt ? new Date(order.createdAt).toDateString() : "-"}</p>
+                <OrderDetails order={order} />
+                <div class="border-t pt-3 mt-5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <TruckIcon class="w-5 h-5 text-primary" />
+                        <h5 class="text-lg font-bold">Shipment Details</h5>
+                    </div>
+                    <div class="space-y-3">
+                        <OrderListItem label="Shipment Option" value={getShipmentOptionDisplay(order.shipmentOption)} />
+                    <OrderListItem label="Mode of Transport" value={order.modeOfShipment} />
+                    </div>
+                </div>
+            </div>
+            <div class="border rounded-lg p-5">
+                <h2 class="text-lg font-bold mb-3">Delivery Agent Information</h2>
+                <div class="space-y-3">
+                    <OrderListItem label="Name" value={order.rider.fullName} />
+                    <OrderListItem label="Phone" value={order.rider.phone} />
+                    <div class="flex items-center gap-2">
+                        <a href={`tel:${order.rider.phone}`} class="mt-4 flex items-center gap-2 font-bold w-full justify-center text-white bg-primary py-2 px-4 rounded-md">
+                            <PhoneCallIcon class="w-5 h-5" />
+                            Contact Agent
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="mt-6">
+            <h2 class="text-lg font-bold mb-5">Order History</h2>
+            <div>
+                <ol class="relative border-l border-gray-200">
+                  {order.history.map((item, index) => (
+                    <li class={`mb-10 ml-6 ${index === order.history.length - 1 ? 'pb-0' : 'pb-4'}`}>
+                      <span class="absolute flex items-center justify-center w-6 h-6 bg-primary rounded-full -left-3 ring-8 ring-white">
+                        <CheckIcon class="w-5 h-5 text-white" />
+                      </span>
+                      <div class="px-4">
+                        <div class="mb-2">
+                          <h3 class="font-medium text-primary">{getShipmentHistoryStatusDisplay(item.status)}</h3>
+                          <time class="text-sm font-normal text-gray-500">
+                            {item.createdAt ? new Date(item.createdAt).toLocaleDateString() : "-"}
+                          </time>
+                        </div>
+                        {item.description && (
+                          <p class="mb-1 text-sm font-normal text-gray-500 lg:w-3/4">
+                            {item.description}
+                          </p>
+                        )}
+                        {Object.keys(item.data).length > 0 && (
+                          <div class="mt-2">
+                            {item.data?.photo && (
+                              <div>
+                                <Image src={item.data.photo} alt="Photo" class="w-20 h-20 rounded-md object-cover" width={80} height={80} />
+                                <a href={item.data.photo} target="_blank" class="font-medium text-sm">Expand photo</a>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+        </section>
+    </div>
+</Layout>

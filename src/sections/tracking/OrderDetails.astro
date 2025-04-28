@@ -1,0 +1,36 @@
+---
+import OrderListItem from '../../components/OrderListItem.astro';
+import type { Order } from '../../types/order';
+import { HomeIcon, MapPinIcon } from '@lucide/astro';
+
+interface Props {
+    order: Order;
+}
+
+const { order } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+        <div class="flex items-center gap-2 mb-3">
+            <MapPinIcon class="w-5 h-5 text-primary" />
+            <h5 class="text-lg font-bold">Pickup Information</h5>
+        </div>
+        <div class="space-y-3">
+            <OrderListItem label="Address" value={order.pickupAddress} />
+        <OrderListItem label="Phone" value={order.senderPhone} />
+        <OrderListItem label="Date" value={order.pickupDate ? new Date(order.pickupDate).toDateString() : "-"} />
+        </div>
+    </div>
+    <div>
+        <div class="flex items-center gap-2 mb-3">
+            <HomeIcon class="w-5 h-5 text-primary" />
+            <h5 class="text-lg font-bold">Dropoff Information</h5>
+        </div>
+        <div class="space-y-3">
+            <OrderListItem label="Address" value={order.dropOffAddress} />
+            <OrderListItem label="Phone" value={order.recipientPhone} />
+            <OrderListItem label="Date" value={order.dropOffDate ? new Date(order.dropOffDate).toDateString() : "-"} />
+        </div>
+    </div>
+</div>

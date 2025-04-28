@@ -1,12 +1,9 @@
 ---
-import Navbar from '../components/Navbar.astro';
 import Layout from '../layouts/Layout.astro';
 import { CreateDeliverySection } from '../sections/delivery/CreateDeliverySection';
 
 ---
 
 <Layout>
-	<Navbar />
-
     <CreateDeliverySection client:visible />
 </Layout>

@@ -13,6 +13,7 @@
     "@astrojs/tailwind": "^6.0.2",
     "@heroui/react": "^2.7.6",
     "@internationalized/date": "^3.8.0",
+    "@lucide/astro": "^0.503.0",
     "@nanostores/react": "nanostores/react",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
