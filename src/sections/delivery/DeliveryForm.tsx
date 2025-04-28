@@ -172,8 +172,8 @@ export function DeliveryForm() {
               name="modeOfShipment"
             />
             <Textarea
-              label="Description"
-              placeholder="Extra information"
+              label="Item Description"
+              placeholder="Item description: What item are we picking up?"
               name="extraInformation"
               labelPlacement="outside"
               variant="bordered"
