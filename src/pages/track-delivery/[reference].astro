@@ -6,7 +6,7 @@ import Layout from "../../layouts/Layout.astro";
 import { getDeliveryOrderByReference } from "../../lib/delivery";
 import OrderDetails from "../../sections/tracking/OrderDetails.astro";
 import OrderListItem from '../../components/OrderListItem.astro';
-import { getShipmentHistoryStatusDisplay, getShipmentOptionDisplay } from '../../utils';
+import { getIconByShipmentStatus, getShipmentHistoryStatusDisplay, getShipmentOptionDisplay } from '../../utils';
 export const prerender = false;
 
 const { reference } = Astro.params;
@@ -22,7 +22,6 @@ if (error) {
 }
 
 const order = data!;
-
 ---
 
 <Layout>
@@ -68,10 +67,12 @@ const order = data!;
             <h2 class="text-lg font-bold mb-5">Order History</h2>
             <div>
                 <ol class="relative border-l border-gray-200">
-                  {order.history.map((item, index) => (
+                  {order.history.map((item, index) => {
+                    const StatusIcon = getIconByShipmentStatus(item.status);
+                    return (
                     <li class={`mb-10 ml-6 ${index === order.history.length - 1 ? 'pb-0' : 'pb-4'}`}>
-                      <span class="absolute flex items-center justify-center w-6 h-6 bg-primary rounded-full -left-3 ring-8 ring-white">
-                        <CheckIcon class="w-5 h-5 text-white" />
+                      <span class="absolute flex items-center justify-center w-8 h-8 bg-primary rounded-full -left-3 ring-8 ring-white">
+                        <StatusIcon class="w-5 h-5 text-white" />
                       </span>
                       <div class="px-4">
                         <div class="mb-2">
@@ -97,7 +98,8 @@ const order = data!;
                         )}
                       </div>
                     </li>
-                  ))}
+                  );
+                })}
                 </ol>
               </div>
         </section>

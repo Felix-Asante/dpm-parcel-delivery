@@ -1,3 +1,12 @@
+import {
+  BanIcon,
+  CheckIcon,
+  LoaderIcon,
+  PackageCheckIcon,
+  TruckIcon,
+  UserCheckIcon,
+  UserPlusIcon,
+} from "@lucide/astro";
 import { ShipmentHistoryStatus, ShipmentOptions } from "../constants/enum";
 
 export function removeEmptyValues(obj: Record<string, any>) {
@@ -41,4 +50,23 @@ export function getShipmentOptionDisplay(option: string) {
     return "Bulk Delivery";
   }
   return option;
+}
+
+export function getIconByShipmentStatus(status: string) {
+  if (status === ShipmentHistoryStatus.OUT_FOR_DELIVERY) {
+    return TruckIcon;
+  } else if (status === ShipmentHistoryStatus.FAILED_DELIVERY_ATTEMPT) {
+    return BanIcon;
+  } else if (status === ShipmentHistoryStatus.DELIVERED) {
+    return CheckIcon;
+  } else if (status === ShipmentHistoryStatus.RIDER_REASSIGNED) {
+    return UserPlusIcon;
+  } else if (status === ShipmentHistoryStatus.PICKUP_CONFIRMED) {
+    return PackageCheckIcon;
+  } else if (status === ShipmentHistoryStatus.PENDING) {
+    return LoaderIcon;
+  } else if (status === ShipmentHistoryStatus.RIDER_ASSIGNED) {
+    return UserCheckIcon;
+  }
+  return CheckIcon;
 }
