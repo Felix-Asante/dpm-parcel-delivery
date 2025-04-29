@@ -24,7 +24,7 @@ export function Success() {
         </p>
         <a
           href="/delivery"
-          className="px-2 text-small hover:underline hover:text-primary"
+          className="px-2 text-small hover:underline text-primary"
         >
           Create Another Order
         </a>
