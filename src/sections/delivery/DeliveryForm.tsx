@@ -157,10 +157,30 @@ export function DeliveryForm() {
               isRequired
             >
               <div className="grid grid-cols-2 gap-4">
-                <CustomRadio value="standard_delivery">Standard</CustomRadio>
-                <CustomRadio value="express_delivery">Express</CustomRadio>
-                <CustomRadio value="special_delivery">Special</CustomRadio>
-                <CustomRadio value="bulk_delivery">Bulk</CustomRadio>
+                <CustomRadio
+                  value="standard_delivery"
+                  description="Items will be picked up and delivered within the day of order."
+                >
+                  Standard
+                </CustomRadio>
+                <CustomRadio
+                  value="express_delivery"
+                  description="Items will be picked up and delivered within the shortest possible time. This comes with higher rates."
+                >
+                  Express
+                </CustomRadio>
+                <CustomRadio
+                  value="special_delivery"
+                  description="This is for special goods only such as fragile items that needs special care. Fee is based on distance."
+                >
+                  Special
+                </CustomRadio>
+                <CustomRadio
+                  value="bulk_delivery"
+                  description="This option is for multiple items only!"
+                >
+                  Bulk
+                </CustomRadio>
               </div>
             </RadioGroup>
             <SelectInput

@@ -50,14 +50,14 @@ const order = data!;
                 </div>
             </div>
             <div class="border rounded-lg p-5">
-                <h2 class="text-lg font-bold mb-3">Delivery Agent Information</h2>
+                <h2 class="text-lg font-bold mb-3">Your Delivery Guy Info</h2>
                {order?.rider ? <div class="space-y-3">
                 <OrderListItem label="Name" value={order.rider?.fullName} />
                 <OrderListItem label="Phone" value={order.rider?.phone} />
                 <div class="flex items-center gap-2">
                     <a href={`tel:${order.rider?.phone}`} class="mt-4 flex items-center gap-2 font-bold w-full justify-center text-white bg-primary py-2 px-4 rounded-md">
                         <PhoneCallIcon class="w-5 h-5" />
-                        Contact Agent
+                        Contact Delivery Guy
                     </a>
                 </div>
             </div>: <p class="text-gray-500">No delivery agent assigned yet.</p> }
@@ -81,6 +81,21 @@ const order = data!;
                             {item.createdAt ? new Date(item.createdAt).toLocaleString() : "-"}
                           </time>
                         </div>
+                        {item.data?.rider_name && (
+                          <p class="text-sm font-normal text-gray-500 mb-1">
+                            Rider: {item.data.rider_name}
+                          </p>
+                        )}
+                        {item.data?.old_rider_name && (
+                          <p class="text-sm font-normal text-gray-500 mb-1">
+                  Previous Rider: {item.data.old_rider_name}
+                </p>
+              )}
+              {item.data?.new_rider_name && (
+                <p class="text-sm font-normal text-gray-500 mb-1">
+                  New Rider: {item.data.new_rider_name}
+                </p>
+              )}
                         {item.description && (
                           <p class="mb-1 text-sm font-normal text-gray-500 lg:w-3/4">
                             {item.description}

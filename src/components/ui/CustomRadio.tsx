@@ -29,7 +29,11 @@ export const CustomRadio = (props: any) => {
         <span {...getControlProps()} />
       </span>
       <div {...getLabelWrapperProps()}>
-        {children && <span {...getLabelProps()}>{children}</span>}
+        {children && (
+          <span {...getLabelProps()} className="font-bold">
+            {children}
+          </span>
+        )}
         {description && (
           <span className="text-small text-foreground opacity-70">
             {description}
