@@ -1,10 +1,14 @@
 import { Button, Form, Input } from "@heroui/react";
 
 export function HomePickupForm() {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
+
   return (
     <div>
       <h2 className="text-xl text-primary font-bold">Schedule Pickup Now !</h2>
-      <Form method="post" className="mt-5 w-full">
+      <Form onSubmit={handleSubmit} method="post" className="mt-5 w-full">
         <div className="grid gap-4 w-full">
           <Input
             isRequired
