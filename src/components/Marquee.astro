@@ -1,0 +1,38 @@
+---
+const { speed = '20s', reverse = false } = Astro.props;
+---
+
+<div class="relative flex overflow-x-hidden gap-10">
+  <div class={`flex py-4 animate-marquee whitespace-nowrap ${reverse ? 'animate-marquee-reverse' : ''}`}>
+    <slot />
+  </div>
+  <div class="flex py-4 animate-marquee whitespace-nowrap" aria-hidden="true">
+    <slot />
+  </div>
+  <div class="flex py-4 animate-marquee whitespace-nowrap" aria-hidden="true">
+    <slot />
+  </div>
+  <div class="flex py-4 animate-marquee whitespace-nowrap" aria-hidden="true">
+    <slot />
+  </div>
+  <div class="flex py-4 animate-marquee whitespace-nowrap" aria-hidden="true">
+    <slot />
+  </div>
+</div>
+
+<style>
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+  }
+  @keyframes marquee-reverse {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+  .animate-marquee {
+    animation: marquee var(--speed, 20s) linear infinite;
+  }
+  .animate-marquee-reverse {
+    animation: marquee-reverse var(--speed, 20s) linear infinite;
+  }
+</style>

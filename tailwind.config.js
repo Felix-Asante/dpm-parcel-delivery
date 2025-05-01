@@ -9,10 +9,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: { DEFAULT: "#ff7043" },
+        primary: { DEFAULT: "#ff7043", 100: "#f9cdc0" },
         success: { DEFAULT: "#2e66f6" },
         secondary: { DEFAULT: "#263238" },
         neutral: { DEFAULT: "#78889b", 100: "#f8f9fb", 200: "#eaeef5" },
+      },
+      container: {
+        md: "1000px",
       },
     },
   },

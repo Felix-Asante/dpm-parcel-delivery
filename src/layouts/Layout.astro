@@ -1,6 +1,8 @@
 ---
 import {HeroUIProvider,ToastProvider} from "@heroui/react";
 import { Navbar } from "../components/Navbar";
+import Footer from "../components/Footer.astro";
+const { showNavbar = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -14,10 +16,11 @@ import { Navbar } from "../components/Navbar";
 	</head>
 	<body>				
 		<HeroUIProvider>
-			<Navbar client:visible />
+			{showNavbar && <Navbar client:visible />}
 			<slot />
 			<ToastProvider />
 		</HeroUIProvider>
+		<Footer />
 	</body>
 </html>
 

@@ -1,11 +1,28 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Button } from "@heroui/react";
+import HeroSection from "../sections/home/HeroSection.astro";
+import Marquee from "../components/Marquee.astro";
+import Layout from "../layouts/Layout.astro";
+import WhyWeAreTrusted from "../sections/home/WhyWeAreTrusted.astro";
+import DeliveryMadeEasy from "../sections/home/DeliveryMadeEasy.astro";
+import Testimonials from "../sections/home/Testimonials.astro";
+
+const parcelIcon = "📦";
+const truckIcon = "🚚";
+const tickIcon = "✅";
 ---
 
-<Layout>
-	<h2>Home</h2>
-	<a href="/delivery">
-		<Button color="primary">Delivery</Button>
-	</a>
+<Layout showNavbar={false}>	
+	<HeroSection />
+	<div class="bg-primary-100 py-3">
+			<Marquee>
+				<div class="flex items-center justify-evenly gap-10">
+					<h4 class="text-xl">{parcelIcon} Instant Quotes</h4>
+					<h4 class="text-xl">{truckIcon} Quick Delivery</h4>
+					<h4 class="text-xl">{tickIcon} 100% Satisfaction Guaranteed</h4>
+				</div>
+			</Marquee>
+	</div>
+	<WhyWeAreTrusted />
+	<DeliveryMadeEasy />
+	<Testimonials />
 </Layout>

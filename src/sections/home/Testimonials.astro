@@ -1,0 +1,265 @@
+---
+import TestimonialCard from "./TestimonialCard.astro";
+
+const testimonials = [
+  {
+    text: "I've used DPM Deliveries multiple times for deliveries from Koforidua to Donkorkrom, and their service has always been top. I highly recommended!",
+    name: "Ama Vera",
+    location: "Donkorkrom",
+    avatarUrl: "/images/avatars/william-fry.jpg",
+    verified: true
+  },
+  {
+    text: "The team at DPM Deliveries is fantastic! They picked up my package from my doorstep and delivered it to Nkawkaw quickly and safely. I'll definitely use them again.",
+    name: "Kofi",
+    location: "Donkorkrom",
+    avatarUrl: "/images/avatars/reece-akhtar.jpg",
+    verified: true
+  },
+  {
+    text: "I was impressed with the speed of DPM Deliveries. My package arrived in perfect condition, and the communication was top-notch.",
+    name: "Evans",
+    location: "Nkawkaw",
+    avatarUrl: "/images/avatars/scott-willman.jpg",
+    verified: true
+  },
+  {
+    text: "I've tried several delivery services, but DPM Deliveries offers the best combination of convenience and affordability. Their doorstep pickup and delivery service is a game-changer!",
+    name: "Yaw",
+    location: "Koforidua",
+    avatarUrl: "/images/avatars/amneet-bains.jpg",
+    verified: true
+  },
+  {
+    text: "I've entrusted DPM Deliveries with several valuable items, and they've always delivered them safely and on time. Their professionalism and reliability are unmatched.",
+    name: "Mrs Enny",
+    location: "Koforidua",
+    avatarUrl: "/images/avatars/patrick-kelly.jpg",
+    verified: true
+  },
+  {
+    text: "I love the fact that they provide updates on where and when your package is via SMS always. This is amazing, I recommend them always.",
+    name: "Saviour",
+    location: "Nkawkaw",
+    avatarUrl: "/images/avatars/marta-tloczek.jpg",
+    verified: true
+  },
+  {
+    text: "I was skeptical about sending a package from Donkorkrom to Koforidua, but DPM Delivery exceeded my expectations. Their long-distance delivery service is efficient, and their staff is friendly and helpful, especially the riders.",
+    name: "Mr Isaac",
+    location: "Donkorkrom",
+    avatarUrl: "/images/avatars/sarah-johnson.jpg",
+    verified: false
+  }
+];
+
+const chunkArray = (array: any[], chunkSize: number) => {
+  const result = [];
+  for (let i = 0; i < array.length; i += chunkSize) {
+    result.push(array.slice(i, i + chunkSize));
+  }
+  return result;
+};
+
+const testimonialColumns = [
+  testimonials.filter((_, i) => i % 3 === 0),
+  testimonials.filter((_, i) => i % 3 === 1),
+  testimonials.filter((_, i) => i % 3 === 2)
+];
+
+---
+
+<section class="mt-20 relative py-20 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+  <!-- Background elements -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-20 left-10 w-64 h-64 rounded-full bg-gray-100 opacity-20 blur-3xl"></div>
+    <div class="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-gray-100 opacity-30 blur-3xl"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">What Our Clients Say</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Don't just take our word for it. Here's what our clients have to say about working with us.
+      </p>
+    </div>
+
+    <div class="hidden lg:grid grid-cols-3 gap-8">
+      {testimonialColumns.map((column, colIndex) => (
+        <div class="space-y-8">
+          {column.map((testimonial, index) => (
+            <div 
+              class="testimonial-card" 
+              data-aos="fade-up" 
+              data-aos-delay={((colIndex + 1) * 100) + (index * 150)} 
+              data-aos-duration="800"
+              data-aos-anchor-placement="center-bottom"
+            >
+              <TestimonialCard 
+                text={testimonial.text}
+                name={testimonial.name}
+                location={testimonial.location}
+                avatarUrl={testimonial.avatarUrl}
+                verified={testimonial.verified}
+              />
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+
+    <!-- Grid layout for tablets -->
+    <div class="hidden md:grid lg:hidden grid-cols-2 gap-8">
+      {chunkArray(testimonials, 2).map((row, rowIndex) => (
+        row.map((testimonial: { text: string; name: string; location: string; avatarUrl: string; verified: boolean; }, colIndex: number) => (
+          <div 
+            class="testimonial-card" 
+            data-aos="fade-up" 
+            data-aos-delay={((rowIndex + 1) * 100) + (colIndex * 150)} 
+            data-aos-duration="800"
+          >
+            <TestimonialCard 
+              text={testimonial.text}
+              name={testimonial.name}
+              location={testimonial.location}
+              avatarUrl={testimonial.avatarUrl}
+              verified={testimonial.verified}
+            />
+          </div>
+        ))
+      ))}
+    </div>
+
+    <!-- Single column for mobile -->
+    <div class="md:hidden space-y-8">
+      {testimonials.map((testimonial, index) => (
+        <div 
+          class="testimonial-card" 
+          data-aos="fade-up" 
+          data-aos-delay={index * 100} 
+          data-aos-duration="800"
+        >
+          <TestimonialCard 
+            text={testimonial.text}
+            name={testimonial.name}
+            location={testimonial.location}
+            avatarUrl={testimonial.avatarUrl}
+            verified={testimonial.verified}
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- <div class="mt-12 flex justify-center gap-4">
+      <button 
+        id="scroll-up-btn" 
+        class="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow focus:outline-none focus:ring-2 focus:ring-primary"
+        aria-label="Scroll up"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+      </button>
+      <button 
+        id="scroll-down-btn" 
+        class="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow focus:outline-none focus:ring-2 focus:ring-primary"
+        aria-label="Scroll down"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+    </div> -->
+  </div>
+</section>
+
+<script>
+  import AOS from 'aos';
+  import 'aos/dist/aos.css';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize AOS animation library with advanced settings
+    AOS.init({
+      once: false,
+      mirror: true,
+      offset: 120,
+      easing: 'ease-out-cubic',
+      anchorPlacement: 'top-bottom'
+    });
+
+    // Create smooth scrolling animation with wave effect
+    const createWaveAnimation = () => {
+      const testimonials = document.querySelectorAll('.testimonial-card');
+      testimonials.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.remove('aos-animate');
+          setTimeout(() => {
+            card.classList.add('aos-animate');
+          }, 50);
+        }, index * 150);
+      });
+    };
+
+    // Auto-scroll animation every 10 seconds
+    const autoAnimateInterval = setInterval(createWaveAnimation, 10000);
+
+    // Handle manual scroll buttons
+    const scrollUpBtn = document.getElementById('scroll-up-btn');
+    const scrollDownBtn = document.getElementById('scroll-down-btn');
+
+    scrollUpBtn?.addEventListener('click', () => {
+      clearInterval(autoAnimateInterval);
+      
+      // Create reverse animation (bottom cards first)
+      const testimonials = Array.from(document.querySelectorAll('.testimonial-card'));
+      testimonials.reverse().forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.remove('aos-animate');
+          setTimeout(() => {
+            card.classList.add('aos-animate');
+          }, 50);
+        }, index * 150);
+      });
+    });
+
+    scrollDownBtn?.addEventListener('click', () => {
+      clearInterval(autoAnimateInterval);
+      createWaveAnimation();
+    });
+
+    // Clean up on page unload
+    return () => {
+      clearInterval(autoAnimateInterval);
+      scrollUpBtn?.removeEventListener('click', () => {});
+      scrollDownBtn?.removeEventListener('click', () => {});
+    };
+  });
+</script>
+
+<style>
+  .testimonial-card {
+    will-change: transform, opacity;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @keyframes floatAnimation {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  /* Apply floating animation to alternate cards for additional visual interest */
+  .testimonial-card:nth-child(odd) {
+    animation: floatAnimation 8s ease-in-out infinite;
+  }
+  
+  .testimonial-card:nth-child(even) {
+    animation: floatAnimation 8s ease-in-out infinite 2s;
+  }
+</style>

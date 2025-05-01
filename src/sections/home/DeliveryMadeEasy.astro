@@ -1,0 +1,29 @@
+---
+import Container from "../../components/Container.astro";
+import { DeliveryMadeEasyData } from "../../constants/data";
+---
+
+    <Container>
+        <div class="relative rounded-xl lg:rounded-2xl p-5 lg:p-10 bg-[url('/cargo.jpg')] bg-cover bg-center bg-no-repeat">
+            <div class="absolute inset-0 bg-gradient-to-b from-[#1E1E1E] to-primary opacity-50 rounded-xl lg:rounded-2xl z-[1]"></div>
+            <div class="flex items-center justify-between relative z-[2]">
+                <div class="hidden lg:block">
+                    <img src="/delivery-man.webp" alt="delivery-man" class="object-cover w-[80%] h-full" />
+                </div>
+                <div>
+                    <h2 class="text-3xl lg:text-4xl text-white font-bold mb-2">Delivery Made Simple</h2>
+                    <p class="text-white">We've turned the complex world of logistics into a seamless experience anyone can navigate. Your delivery journey is now as simple as 1-2-3!</p>
+
+                    <div class="flex flex-col gap-5 mt-5 mb-12">
+                        {DeliveryMadeEasyData.map((item,i) => (
+                            <div class="flex flex-col gap-1">
+                                <h3 class="text-xl font-semibold text-white">{i+1}. {item.title}</h3>
+                                <p class="text-white">{item.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                    <a href="/delivery" class="bg-primary text-white font-bold p-4 rounded-full">Get Your Quote Now</a>
+                </div>
+            </div>
+        </div>
+    </Container>
