@@ -15,6 +15,7 @@ interface SelectInputProps {
   size?: "sm" | "md" | "lg";
   isRequired?: boolean;
   name?: string;
+  defaultValue?: string;
 }
 export default function SelectInput(props: SelectInputProps) {
   const {
@@ -24,6 +25,7 @@ export default function SelectInput(props: SelectInputProps) {
     size = "md",
     isRequired = false,
     name,
+    defaultValue,
   } = props;
 
   return (
@@ -37,6 +39,7 @@ export default function SelectInput(props: SelectInputProps) {
       size={size}
       isRequired={isRequired}
       name={name}
+      defaultSelectedKeys={defaultValue ? new Set([defaultValue]) : undefined}
     >
       {(option) => (
         <SelectItem

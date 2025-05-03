@@ -8,7 +8,7 @@ import {
   Textarea,
   ToastProvider,
 } from "@heroui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CustomRadio } from "../../components/ui/CustomRadio";
 import SelectInput from "../../components/ui/SelectInput";
 import { ModeOfShipment } from "../../constants/data";
@@ -17,10 +17,33 @@ import { showDeliveryForm } from "../../store/global";
 import { getErrorMessage } from "../../utils/error";
 import { useStore } from "@nanostores/react";
 import { AllowedCities } from "../../constants/enum";
+import { map } from "nanostores";
+
+const $queriesStore = map({
+  pickupCity: "",
+  pickupArea: "",
+  senderPhone: "",
+});
 
 export function DeliveryForm() {
   const [pending, setPending] = useState(false);
   const $showDeliveryForm = useStore(showDeliveryForm);
+  const $queries = useStore($queriesStore);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const pickupCity = searchParams.get("pickupCity") || "";
+    const pickupArea = searchParams.get("pickupArea") || "";
+    const senderPhone = searchParams.get("senderPhone") || "";
+
+    $queriesStore.set({
+      pickupCity,
+      pickupArea,
+      senderPhone,
+    });
+  }, []);
+
+  const paramKey = `${$queries.pickupCity}-${$queries.pickupArea}-${$queries.senderPhone}`;
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,7 +74,7 @@ export function DeliveryForm() {
   };
 
   return (
-    <Form method="post" onSubmit={onSubmit}>
+    <Form key={paramKey} method="post" onSubmit={onSubmit}>
       <div className="grid lg:grid-cols-2 gap-8 2xl:gap-16 w-full my-12 mb-20">
         <div className="flex flex-col gap-y-4 w-full">
           <SelectInput
@@ -64,6 +87,7 @@ export function DeliveryForm() {
             size="lg"
             isRequired
             name="pickupCity"
+            defaultValue={$queries.pickupCity}
           />
           <Input
             isRequired
@@ -76,6 +100,7 @@ export function DeliveryForm() {
             variant="bordered"
             size="lg"
             radius="sm"
+            defaultValue={$queries.pickupArea}
           />
 
           <Input
@@ -90,6 +115,7 @@ export function DeliveryForm() {
             radius="sm"
             type="tel"
             inputMode="tel"
+            defaultValue={$queries.senderPhone}
           />
           <SelectInput
             options={Object.values(AllowedCities).map((city) => ({
@@ -156,7 +182,7 @@ export function DeliveryForm() {
               name="shipmentOption"
               isRequired
             >
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 gap-4">
                 <CustomRadio
                   value="standard_delivery"
                   description="Items will be picked up and delivered within the day of order."

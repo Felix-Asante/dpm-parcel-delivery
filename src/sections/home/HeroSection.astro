@@ -5,7 +5,7 @@ import {HomePickupForm} from "./HomePickupForm";
 import { TrackingDeliveryForm } from "./TrackingDeliveryForm";
 ---
 
-<header class="relative  lg:h-[80vh] bg-[url('/hero-bg.jpg')] bg-cover bg-center py-7">
+<header class="relative  lg:h-[86vh] bg-[url('/hero-bg.jpg')] bg-cover bg-center py-7">
     <div class="absolute inset-0 bg-gradient-to-b from-[#1E1E1E] to-primary opacity-50 z-[1]"></div>
     <Container className="h-full">
         <div class="flex flex-col gap-10 lg:flex-row lg:items-center justify-center lg:justify-between h-full relative z-[2]">
@@ -23,10 +23,10 @@ import { TrackingDeliveryForm } from "./TrackingDeliveryForm";
                     <p class="sm:text-lg text-white mt-2">We Pick Up & Deliver Anything, Anywhere - On Time, Every Time!
                     </p>
                 </div>
-                <TrackingDeliveryForm />
+                <TrackingDeliveryForm client:visible />
             </div>
             <div class='rounded-xl bg-white p-4 lg:w-[40%]'>
-                <HomePickupForm />
+                <HomePickupForm client:visible />
             </div>
         </div>
     </Container>
