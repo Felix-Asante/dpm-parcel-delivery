@@ -30,6 +30,9 @@ export function Navbar({ className }: NavbarProps) {
           DPM <span className="text-primary">Deliveries</span>{" "}
         </a>
         <ul className="flex items-center gap-4">
+          <a href="/" className="text-white font-bold text-sm">
+            Home
+          </a>
           <li>
             <Button
               size="md"
@@ -37,7 +40,7 @@ export function Navbar({ className }: NavbarProps) {
               disableRipple
               onPress={() => handleOpen(Modals.TRACK_DELIVERY)}
               radius="sm"
-              className="text-white font-bold"
+              className="text-white font-bold hover:!bg-transparent"
             >
               Track delivery
             </Button>
