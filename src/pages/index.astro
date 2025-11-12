@@ -5,6 +5,8 @@ import Layout from "../layouts/Layout.astro";
 import WhyWeAreTrusted from "../sections/home/WhyWeAreTrusted.astro";
 import DeliveryMadeEasy from "../sections/home/DeliveryMadeEasy.astro";
 import Testimonials from "../sections/home/Testimonials.astro";
+import Container from "../components/Container.astro";
+import { PackageCheck, Clock, ShieldCheck, TrendingUp } from "@lucide/astro";
 
 const parcelIcon = "📦";
 const truckIcon = "🚚";
@@ -13,16 +15,168 @@ const tickIcon = "✅";
 
 <Layout showNavbar={false}>	
 	<HeroSection />
+	
+	<!-- Trust Marquee -->
 	<div class="bg-primary-100 py-3">
-			<Marquee>
-				<div class="flex items-center justify-evenly gap-10">
-					<h4 class="text-xl">{parcelIcon} Instant Quotes</h4>
-					<h4 class="text-xl">{truckIcon} Quick Delivery</h4>
-					<h4 class="text-xl">{tickIcon} 100% Satisfaction Guaranteed</h4>
-				</div>
-			</Marquee>
+		<Marquee>
+			<div class="flex items-center justify-evenly gap-10">
+				<h4 class="text-xl font-semibold">{parcelIcon} Instant Quotes</h4>
+				<h4 class="text-xl font-semibold">{truckIcon} Same-Day Delivery</h4>
+				<h4 class="text-xl font-semibold">{tickIcon} 100% Satisfaction Guaranteed</h4>
+				<h4 class="text-xl font-semibold">🔒 Secure & Insured</h4>
+			</div>
+		</Marquee>
 	</div>
+	
+	<!-- Trust Stats Section -->
+	<section class="py-12 bg-gradient-to-b from-white to-neutral-100">
+		<Container>
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+				<div class="text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+					<div class="flex justify-center mb-3">
+						<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+							<PackageCheck class="w-6 h-6 text-primary" />
+						</div>
+					</div>
+					<h3 class="text-3xl md:text-4xl font-bold text-secondary mb-1">10K+</h3>
+					<p class="text-neutral text-sm md:text-base">Deliveries Completed</p>
+				</div>
+				
+				<div class="text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+					<div class="flex justify-center mb-3">
+						<div class="w-12 h-12 bg-success/10 rounded-full flex items-center justify-center">
+							<Clock class="w-6 h-6 text-success" />
+						</div>
+					</div>
+					<h3 class="text-3xl md:text-4xl font-bold text-secondary mb-1">98%</h3>
+					<p class="text-neutral text-sm md:text-base">On-Time Delivery</p>
+				</div>
+				
+				<div class="text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+					<div class="flex justify-center mb-3">
+						<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+							<ShieldCheck class="w-6 h-6 text-primary" />
+						</div>
+					</div>
+					<h3 class="text-3xl md:text-4xl font-bold text-secondary mb-1">100%</h3>
+					<p class="text-neutral text-sm md:text-base">Secure & Tracked</p>
+				</div>
+				
+				<div class="text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+					<div class="flex justify-center mb-3">
+						<div class="w-12 h-12 bg-success/10 rounded-full flex items-center justify-center">
+							<TrendingUp class="w-6 h-6 text-success" />
+						</div>
+					</div>
+					<h3 class="text-3xl md:text-4xl font-bold text-secondary mb-1">5K+</h3>
+					<p class="text-neutral text-sm md:text-base">Happy Customers</p>
+				</div>
+			</div>
+		</Container>
+	</section>
+	
 	<WhyWeAreTrusted />
 	<DeliveryMadeEasy />
+	
+	<!-- Service Coverage Section -->
+	<section class="py-16 bg-white">
+		<Container>
+			<div class="text-center mb-12">
+				<h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary mb-4">Delivering Across Eastern Region</h2>
+				<p class="text-lg text-neutral max-w-3xl mx-auto">We connect communities with reliable delivery services across major towns and cities</p>
+			</div>
+			
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+				<div class="bg-gradient-to-br from-neutral-100 to-white p-6 rounded-xl border-2 border-neutral-200 hover:border-primary transition-colors">
+					<div class="flex items-start gap-4">
+						<div class="text-3xl">🏙️</div>
+						<div>
+							<h3 class="text-xl font-bold text-secondary mb-2">Koforidua</h3>
+							<p class="text-neutral">Full coverage with multiple daily routes and express delivery options</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bg-gradient-to-br from-neutral-100 to-white p-6 rounded-xl border-2 border-neutral-200 hover:border-primary transition-colors">
+					<div class="flex items-start gap-4">
+						<div class="text-3xl">🌆</div>
+						<div>
+							<h3 class="text-xl font-bold text-secondary mb-2">Nkawkaw</h3>
+							<p class="text-neutral">Same-day delivery available with real-time tracking and SMS updates</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bg-gradient-to-br from-neutral-100 to-white p-6 rounded-xl border-2 border-neutral-200 hover:border-primary transition-colors">
+					<div class="flex items-start gap-4">
+						<div class="text-3xl">🏘️</div>
+						<div>
+							<h3 class="text-xl font-bold text-secondary mb-2">Donkorkrom</h3>
+							<p class="text-neutral">Reliable connections with flexible pickup and delivery schedules</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bg-gradient-to-br from-neutral-100 to-white p-6 rounded-xl border-2 border-neutral-200 hover:border-primary transition-colors md:col-span-2 lg:col-span-3">
+					<div class="flex items-start gap-4 justify-center text-center md:text-left md:justify-start">
+						<div class="text-3xl">📍</div>
+						<div>
+							<h3 class="text-xl font-bold text-secondary mb-2">More Towns & Surrounding Areas</h3>
+							<p class="text-neutral">We also serve numerous surrounding communities. Contact us to check if we deliver to your location!</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</Container>
+	</section>
+	
 	<Testimonials />
+	
+	<!-- Final CTA Section -->
+	<section class="py-20 bg-gradient-to-br from-primary to-primary/80 relative overflow-hidden">
+		<div class="absolute inset-0 opacity-10">
+			<div class="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+			<div class="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+		</div>
+		<Container>
+			<div class="text-center relative z-10">
+				<h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">Ready to Experience Hassle-Free Delivery?</h2>
+				<p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">Join thousands of satisfied customers who trust us with their deliveries every day</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+					<a href="/delivery" class="bg-white text-primary font-bold px-8 py-4 rounded-full hover:bg-neutral-100 transition-colors shadow-lg text-lg">
+						Get Your Quote Now
+					</a>
+					<!-- <a href="#track" class="bg-secondary text-white font-bold px-8 py-4 rounded-full hover:bg-secondary/90 transition-colors border-2 border-white text-lg">
+						Track Your Package
+					</a> -->
+				</div>
+				<div class="mt-12 flex flex-wrap justify-center gap-8 text-white/80 text-sm">
+					<div class="flex items-center gap-2">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+						</svg>
+						<span>No Hidden Fees</span>
+					</div>
+					<div class="flex items-center gap-2">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+						</svg>
+						<span>SMS Tracking Updates</span>
+					</div>
+					<div class="flex items-center gap-2">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+						</svg>
+						<span>Doorstep Service</span>
+					</div>
+					<div class="flex items-center gap-2">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+						</svg>
+						<span>Friendly Support</span>
+					</div>
+				</div>
+			</div>
+		</Container>
+	</section>
 </Layout>

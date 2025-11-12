@@ -1,13 +1,85 @@
 ---
 import Container from "./Container.astro";
-
+import { Package, MapPin, Phone, Mail } from "@lucide/astro";
 ---
 
-<footer class="bg-secondary text-white">
+<footer class="bg-secondary text-white pt-12 pb-6">
     <Container>
-        <div class="flex items-center justify-between">
-            <h4 class="font-bold text-lg">DPM Deliveries</h4>
-            <p class="text-white">&copy; {new Date().getFullYear()} DPM Deliveries. All rights reserved.</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            <!-- Brand Section -->
+            <div>
+                <div class="flex items-center gap-2 mb-4">
+                    <Package class="w-6 h-6 text-primary" />
+                    <h4 class="font-bold text-xl">DPM Deliveries</h4>
+                </div>
+                <p class="text-white/80 text-sm leading-relaxed">
+                    Fast, Reliable, and Hassle-Free delivery services across the Eastern Region. Your trusted partner for all your delivery needs.
+                </p>
+            </div>
+            
+            <!-- Quick Links -->
+            <div>
+                <h5 class="font-bold text-lg mb-4">Quick Links</h5>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/" class="text-white/80 hover:text-primary transition-colors">Home</a></li>
+                    <li><a href="/delivery" class="text-white/80 hover:text-primary transition-colors">Book Delivery</a></li>
+                </ul>
+            </div>
+            
+            <!-- Service Areas -->
+            <div>
+                <h5 class="font-bold text-lg mb-4">Service Areas</h5>
+                <ul class="space-y-2 text-sm text-white/80">
+                    <li class="flex items-center gap-2">
+                        <MapPin class="w-4 h-4 text-primary" />
+                        <span>Koforidua</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <MapPin class="w-4 h-4 text-primary" />
+                        <span>Nkawkaw</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <MapPin class="w-4 h-4 text-primary" />
+                        <span>Donkorkrom</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <MapPin class="w-4 h-4 text-primary" />
+                        <span>Surrounding Areas</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div>
+                <h5 class="font-bold text-lg mb-4">Contact Us</h5>
+                <ul class="space-y-3 text-sm text-white/80">
+                    <li class="flex items-start gap-2">
+                        <Phone class="w-4 h-4 text-primary mt-0.5" />
+                        <div>
+                            <p class="text-white font-medium">Call Us</p>
+                            <a href="tel:+233" class="hover:text-primary transition-colors">+233 55 443 6269</a>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <Mail class="w-4 h-4 text-primary mt-0.5" />
+                        <div>
+                            <p class="text-white font-medium">Email</p>
+                            <a href="mailto:info@dpmdeliveries.com" class="hover:text-primary transition-colors">info@dpmdeliveries.com</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Bottom Bar -->
+        <div class="border-t border-white/10 pt-6 mt-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/60">
+                <p>&copy; {new Date().getFullYear()} DPM Deliveries. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#privacy" class="hover:text-primary transition-colors">Privacy Policy</a>
+                    <a href="#terms" class="hover:text-primary transition-colors">Terms of Service</a>
+                </div>
+            </div>
         </div>
     </Container>
 </footer>
