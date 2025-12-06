@@ -114,7 +114,7 @@ export function getDescriptionByShipmentStatus(status: string) {
     [ShipmentHistoryStatus.ARRIVED]:
       "Package has reached the receiving city office.",
     [ShipmentHistoryStatus.READY_FOR_PICKUP]:
-      "Package is ready for Pickup at Destination city office (Destination city)",
+      "Package is ready for Pickup at Destination city office",
     [ShipmentHistoryStatus.REFUNDED]:
       "Payment for delivery has being refunded successfully",
   };

@@ -12,6 +12,7 @@ import {
   getShipmentHistoryStatusDisplay,
   getShipmentOptionDisplay,
 } from "../../utils";
+import { ShipmentHistoryStatus } from "../../constants/enum";
 export const prerender = false;
 
 const { reference } = Astro.params;
@@ -95,6 +96,8 @@ const order = data!;
             order.history.map((item, index) => {
               const StatusIcon = getIconByShipmentStatus(item.status);
               const description = getDescriptionByShipmentStatus(item.status);
+              const isReadyForPickup =
+                item.status === ShipmentHistoryStatus.READY_FOR_PICKUP;
               return (
                 <li
                   class={`mb-10 ml-6 ${index === order.history.length - 1 ? "pb-0" : "pb-4"}`}
@@ -114,7 +117,8 @@ const order = data!;
                           : "-"}
                       </time>
                       <p class="text-sm font-normal text-black mt-1">
-                        {description}
+                        {description}{" "}
+                        {isReadyForPickup && `(${order.dropOffCity})`}
                       </p>
                     </div>
                     {item.data?.rider_name && (
