@@ -26,7 +26,7 @@ export function TrackingDeliveryForm() {
           />
           <button
             type="submit"
-            className="bg-primary hover:bg-primary/90 transition-colors rounded-full p-2"
+            className="bg-primary hover:bg-primary/90 transition-colors rounded-full p-2 px-3"
           >
             Track your order
           </button>
