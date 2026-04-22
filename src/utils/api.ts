@@ -7,7 +7,11 @@ export const api = {
     get_by_reference: (referenceId: string) =>
       `${api.baseUrl}/shipping/reference/${referenceId}`,
   },
+  complaints: {
+    root: () => `${api.baseUrl}/complaints`,
+  },
   internal: {
     delivery: "/api/delivery",
+    complaint: "/api/complaint",
   },
 };

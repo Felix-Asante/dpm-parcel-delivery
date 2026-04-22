@@ -33,6 +33,12 @@ export function Navbar({ className }: NavbarProps) {
           <a href="/" className="text-white font-bold text-sm">
             Home
           </a>
+          <a
+            href="/complaints"
+            className="text-white font-bold text-sm hover:underline"
+          >
+            Complaints
+          </a>
           <li>
             <Button
               size="md"

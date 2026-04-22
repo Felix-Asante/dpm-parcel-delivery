@@ -2,7 +2,10 @@
 import {HeroUIProvider,ToastProvider} from "@heroui/react";
 import { Navbar } from "../components/Navbar";
 import Footer from "../components/Footer.astro";
-const { showNavbar = true } = Astro.props;
+const {
+  showNavbar = true,
+  title = "DPM Deliveries",
+} = Astro.props as { showNavbar?: boolean; title?: string };
 ---
 
 <!doctype html>
@@ -12,7 +15,7 @@ const { showNavbar = true } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>DPM Deliveries</title>
+		<title>{title}</title>
 	</head>
 	<body>				
 		<HeroUIProvider>
