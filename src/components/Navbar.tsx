@@ -37,7 +37,7 @@ export function Navbar({ className }: NavbarProps) {
             href="/complaints"
             className="text-white font-bold text-sm hover:underline"
           >
-            Complaints
+            Log Complaints
           </a>
           <li>
             <Button
